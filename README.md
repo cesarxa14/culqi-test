@@ -2,6 +2,10 @@
 
 **Cesar Torres** 
 
+Diseño de la aplicación
+
+![propuesta](https://github.com/cesarxa14/culqi-test/blob/master/assets/propuesta.png)
+
 ## 🚀 Tecnologías Usadas
 
 - **NestJS**: Framework backend utilizado para estructurar el sistema de tokenización de manera modular y escalable.
@@ -23,7 +27,59 @@ Al haber usado Arquitectura Hexagonal eso con lleva a usar algunos patrones de d
 
 ## Instalación
 
+Sigue estos pasos para correr el proyecto en tu máquina local usando Docker y MongoDB.
 
+### 1. Clona el repositorio
+
+```bash
+git clone https://github.com/cesarxa14/culqi-test.git
+cd culqi-test
+```
+
+### 2. Levanta MongoDB con Docker
+
+```bash
+docker run -d --name mongodb -p 27017:27017 mongo:latest
+```
+
+MongoDB quedará accesible en mongodb://localhost:27017
+
+### 3. Construye y ejecuta la imagen Docker de la aplicación
+
+```bash
+docker build -t culqi-test .
+docker run -p 3000:3000 --env MONGODB_URI="mongodb://host.docker.internal:27017/culqi culqi-test
+```
+
+### 4. Verifica el arranque de la aplicación
+Abre tu navegador y entra a http://localhost:3000
+
+## Endpoints
+
+### 1. Generate Token:
+- Metodo: POST
+- Header: x-api-key=pk_test_CESAR_KEY
+- URI: http://localhost:3000/tokens 
+- Body: 
+```json
+{
+    "email": "cesar@gmail.com",
+    "card_number": 4557789612518226,
+    "cvv": 124,
+    "expiration_month": "12",
+    "expiration_year": "2028"
+}
+```
+
+### 2. Get Card Data:
+- Metodo: GET
+- Header: x-api-key=pk_test_CESAR_KEY
+- URI: http://localhost:3000/tokens?tokenData='token'
+- Params: 
+```json
+tokenData=jz7aAhovA9yemEtJ
+```
+    
 ## Demostración
 
 Endpoint donde genera el token según los datos de las tarjetas
@@ -61,56 +117,6 @@ Test Unitarios
 ![Test](https://github.com/cesarxa14/culqi-test/blob/master/assets/tests.png)
 
 
-- List of blog posts from json-server
-
-- Filter posts by title using an input box
-
-- View detailed post pages using dynamic routing
-
-- Uses @Input() and @Output() for communication between components
-
-- Responsive UI styled with Bootstrap
-
-- Angular animations applied between route transitions
-
-- Redirect to homepage if the route does not exist
-
-## 📦 Installation & Setup
-
-Follow the steps below to run the project locally:
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/cesarxa14/blog-cesar
-cd blog-cesar
-```
-
-### 2. Install all dependencies 
-
-```bash
-npm install
-```
-
-### 3. Install json-server globally (if not already installed)
-
-```bash
-npm install -g json-server
-```
-
-### 4. Run the mock API server
-
-```bash
-json-server --watch db.json --port 3000
-```
-This will serve data from db.json at:
-http://localhost:3000/posts
-
-### 5. Run the Angular app
-
-```bash
-ng serve -o
-```
 
 
 
