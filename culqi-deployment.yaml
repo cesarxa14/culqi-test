@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: culqi-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: culqi-test
+  template:
+    metadata:
+      labels:
+        app: culqi-test
+    spec:
+      containers:
+        - name: culqi-test
+          image: 319643186591.dkr.ecr.us-east-2.amazonaws.com/culqi-test
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: culqi-secrets
