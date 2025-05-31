@@ -1,99 +1,115 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 📝 Prueba Tecnica Culqi
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+**Cesar Torres** 
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Tecnologías Usadas
 
-## Description
+- **NestJS**: Framework backend utilizado para estructurar el sistema de tokenización de manera modular y escalable.
+- **Servicio AWS - EKS**: Plataforma de orquestación de contenedores usada para desplegar y escalar la aplicación en un entorno seguro y altamente disponible.
+- **BD NoSQL - MongoDB**: Base de datos utilizada para almacenar los datos encriptados de tarjetas de crédito. Se aprovechó su funcionalidad de TTL (Time-To-Live) para que los documentos expiren automáticamente a los 15 minutos de ser creados.
+- **Test - Jest / Postman**: Herramientas utilizadas para realizar pruebas unitarias y pruebas manuales de los endpoints durante el desarrollo.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Arquitectura
 
-## Project setup
+Implementé Arquitectura Hexagonal en esta prueba porque me permite separar claramente la lógica de negocio del resto de la infraestructura. Esto facilita el mantenimiento del código, hace que las pruebas sean más sencillas y me permite cambiar tecnologías externas, como la base de datos o servicios externos sin afectar el núcleo de la aplicación. Además, mejora la escalabilidad y la organización del proyecto a largo plazo.
+
+## Diseño
+
+**Patrones de Diseño**:
+Al haber usado Arquitectura Hexagonal eso con lleva a usar algunos patrones de diseño tales como:
+- Repository Pattern: Me permitíó que la lógica de negocio trabaje con interfaces y no con detalles de persistencia.
+- Dependency Inversion: Las capas internas no dependes de las capas de afuera. En mi caso, por ejemplo, la capa de Dominio no depende de la capa Aplicación o Infraestructura
+- Strategy Pattern: Se aplica el patrón Strategy al desacoplar la lógica de negocio del repositorio de persistencia, permitiendo intercambiar fácilmente la implementación concreta (como MongoDB u otro almacenamiento) sin modificar el caso de uso.
+
+## Instalación
+
+
+## Demostración
+
+Endpoint donde genera el token según los datos de las tarjetas
+
+![Generate Token](https://github.com/cesarxa14/culqi-test/blob/master/assets/api_generate_token.png)
+
+Endpoint donde se puede extraer el valor de la tarjeta de crédito mediante el token.
+
+![Get Card Data](https://github.com/cesarxa14/culqi-test/blob/master/assets/api_get_card.png)
+
+
+Documento en Mongo de la información encriptada de la tarjeta
+
+![Mongo](https://github.com/cesarxa14/culqi-test/blob/master/assets/mongodata.png)
+
+
+Cluster Desplegado en EKS AWS
+![Cluster EKS](https://github.com/cesarxa14/culqi-test/blob/master/assets/cluster.png)
+
+
+Imagenes desplegadas en ECR AWS
+
+![ECR Images](https://github.com/cesarxa14/culqi-test/blob/master/assets/ecr.png)
+
+Test Unitarios
+
+![Test](https://github.com/cesarxa14/culqi-test/blob/master/assets/tests.png)
+
+
+- List of blog posts from json-server
+
+- Filter posts by title using an input box
+
+- View detailed post pages using dynamic routing
+
+- Uses @Input() and @Output() for communication between components
+
+- Responsive UI styled with Bootstrap
+
+- Angular animations applied between route transitions
+
+- Redirect to homepage if the route does not exist
+
+## 📦 Installation & Setup
+
+Follow the steps below to run the project locally:
+
+### 1. Clone the repository
 
 ```bash
-$ npm install
+git clone https://github.com/cesarxa14/blog-cesar
+cd blog-cesar
 ```
 
-## Compile and run the project
+### 2. Install all dependencies 
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+### 3. Install json-server globally (if not already installed)
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install -g json-server
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 4. Run the mock API server
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+json-server --watch db.json --port 3000
+```
+This will serve data from db.json at:
+http://localhost:3000/posts
+
+### 5. Run the Angular app
+
+```bash
+ng serve -o
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
-## Resources
 
-Check out a few resources that may come in handy when working with NestJS:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
