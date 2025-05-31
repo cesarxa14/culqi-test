@@ -30,23 +30,31 @@ Endpoint donde genera el token según los datos de las tarjetas
 
 ![Generate Token](https://github.com/cesarxa14/culqi-test/blob/master/assets/api_generate_token.png)
 
+<br>
+
 Endpoint donde se puede extraer el valor de la tarjeta de crédito mediante el token.
 
 ![Get Card Data](https://github.com/cesarxa14/culqi-test/blob/master/assets/api_get_card.png)
 
+<br>
 
 Documento en Mongo de la información encriptada de la tarjeta
 
 ![Mongo](https://github.com/cesarxa14/culqi-test/blob/master/assets/mongodata.png)
 
+<br>
 
 Cluster Desplegado en EKS AWS
 ![Cluster EKS](https://github.com/cesarxa14/culqi-test/blob/master/assets/cluster.png)
+
+<br>
 
 
 Imagenes desplegadas en ECR AWS
 
 ![ECR Images](https://github.com/cesarxa14/culqi-test/blob/master/assets/ecr.png)
+
+<br>
 
 Test Unitarios
 
